@@ -1,4 +1,6 @@
 --create the table
+--note, all entries' data is fictitious and not intended to represent any actual brand name or product, fictitious use is for educational purposes
+
 create table techstop(id integer primary key, item text, description text, qty integer, price real);
 
 --write these records
@@ -23,3 +25,5 @@ SELECT * FROM techstop ORDER BY price;
 
 --show the most expensive item
 SELECT MAX(price) FROM techstop
+
+--23 March 2023, 11:34 AM
