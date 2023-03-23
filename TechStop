@@ -1,0 +1,25 @@
+--create the table
+create table techstop(id integer primary key, item text, description text, qty integer, price real);
+
+--write these records
+insert into techstop values(1, "Gaming laptop", "The best gaming laptop", 5, 2099.99);
+insert into techstop values(2, "Gaming laptop 2", "The second-best gaming laptop", 4, 1699.99);
+insert into techstop values(3, "Gaming laptop 3", "The lowest-cost gaming laptop", 5, 999.99);
+insert into techstop values(4, "iPad 3", "The best iPad", 15, 499.99);
+insert into techstop values(5, "iPad 2", "Medium iPad", 20, 399.99);
+insert into techstop values(6, "iPad 1", "The lowest cost iPad", 5, 299.99);
+insert into techstop values(7, "Razer mouse", "The best mouse", 15, 49.99);
+insert into techstop values(8, "Microsoft mouse", "The worst mouse", 5, 19.99);
+insert into techstop values(9, "Gaming keyboard", "The best gaming keyboard", 20, 29.99);
+insert into techstop values(10, "Normal keyboard", "An ordinary keyboard", 5, 14.99);
+insert into techstop values(11, "Fifa 23", "A popular game", 25, 49.99);
+insert into techstop values(12, "DEFCON", "An indie game", 9, 19.99);
+insert into techstop values(13, "Apple USB charger", "An ordinary charger", 20, 59.99);
+insert into techstop values(14, "Generic USB charger", "An ordinary charger", 25, 7.99);
+insert into techstop values(15, "Android charger", "An ordinary charger, but for Android phones", 35, 6.99);
+
+--show the table ordered by price
+SELECT * FROM techstop ORDER BY price;
+
+--show the most expensive item
+SELECT MAX(price) FROM techstop
