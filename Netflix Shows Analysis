@@ -104,5 +104,14 @@ where "title" = 'The Starling';
 -- 5.  What is the oldest movie in the database and what year was it made?
 select  "title", "release_year"
 from "netflix_titles_info"
+where "type" = 'Movie'
 order by "release_year" asc
 limit 1;
+
+--6. That wasn't the best way to do it. Let's improve it. 
+select  "title", "release_year"
+from "netflix_titles_info"
+	where 	"type" = 'Movie' 
+	and 	"release_year" <= 	(select min("release_year") 
+								from "netflix_titles_info"
+								where 	"type" = 'Movie') ;
