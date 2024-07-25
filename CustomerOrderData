@@ -1,0 +1,38 @@
+--In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data. 
+
+
+SELECT * FROM BIT_DB.FebSales limit 3;
+SELECT * FROM BIT_DB.customers limit 3;
+
+--3. Select the customer account numbers for all the orders that were placed in February. 
+SELECT DISTINCT acctnum FROM BIT_DB.FebSales
+JOIN customers ON FebSales.orderID = customers.order_id
+WHERE length(orderid) = 6
+AND orderid <> 'Order ID';
+
+--4. Which product was the cheapest one sold in January, and what was the price? 
+SELECT * FROM BIT_DB.JanSales limit 3;
+SELECT DISTINCT Product, price   FROM BIT_DB.JanSales 
+WHERE price IN (SELECT MIN(price) FROM BIT_DB.JanSales)    ;
+
+ --5. What is the total revenue for each product sold in January?   
+ SELECT * FROM BIT_DB.JanSales limit 3;
+ SELECT (SUM(Quantity))*price AS 'Revenue', product
+ FROM JanSales
+ WHERE product <> ''
+ AND product <> 'Product'
+ GROUP BY Product;
+ 
+--6. Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue? 
+SELECT * FROM BIT_DB.FebSales limit 3;
+SELECT SUM(Quantity), Product,SUM(Quantity)*Price as 'Revenue'
+FROM BIT_DB.FebSales
+WHERE location = '548 Lincoln St, Seattle, WA 98101'
+GROUP BY Product;
+
+--7. How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers? 
+SELECT count(distinct acctnum), avg(quantity)*price FROM customers
+LEFT JOIN FebSales ON order_id = orderid
+WHERE quantity > 2
+AND length(orderid) = 6
+AND orderid <> 'Order ID'; 
